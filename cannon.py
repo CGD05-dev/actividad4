@@ -26,8 +26,8 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 200) / 10
+        speed.y = (y + 200) / 10
 
 
 def inside(xy):
@@ -69,14 +69,13 @@ def move():
         targets.append(target)
 
     for target in targets:
-        target.x -= 0.5
-	# Reposition targets when they leave the screen
+      
         if not inside(target):
             reposition_target(target)	
 
-
+        target.x -= 2.0
     if inside(ball):
-        speed.y -= 0.35
+        speed.y -= 0.2
         ball.move(speed)
 	# Reposition the ball if it leaves the screen
         if not inside(ball):
