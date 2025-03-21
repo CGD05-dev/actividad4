@@ -26,24 +26,23 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 10
-        speed.y = (y + 200) / 10
+        speed.x = (x + 200) / 15
+        speed.y = (y + 200) / 15
 
 
 def inside(xy):
     """Return True if xy within screen."""
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
+
 def reposition_target(target):
-    """Reposition the target when it leaves the screen."""
     target.x = 200
     target.y = randrange(-150, 150)
 
 
 def reposition_ball():
-    """Reposition the ball when it leaves the screen."""
-    ball.x = -199
-    ball.y = -199
+    ball.x = -200
+    ball.y = -200
 
 
 def draw():
@@ -69,8 +68,9 @@ def move():
         targets.append(target)
 
     for target in targets:
-      
+        target.x -= 1.5
         if not inside(target):
+<<<<<<< HEAD
 		reposition_target(target)	
 	else:
 		target.x -= 2.0
@@ -83,9 +83,23 @@ def move():
 
     for target in targets:
         if abs(target - ball) < 13:
+=======
+>>>>>>> f6b15aa (se corrigio el commit en el que agregue un else ya que no funciono en este hice una modificacion de posicion de target.x ya que existia un mal funcionamiento)
             reposition_target(target)
-            
-            
+
+    if inside(ball):
+        speed.y -= 0.35
+        ball.move(speed)
+    else:
+        reposition_ball()
+
+    dupe = targets.copy()
+    targets.clear()
+
+    for target in dupe:
+        if abs(target - ball) > 13:
+            targets.append(target)
+
     draw()
 
     ontimer(move, 50)
