@@ -71,9 +71,9 @@ def move():
     for target in targets:
       
         if not inside(target):
-            reposition_target(target)	
-
-        target.x -= 2.0
+		reposition_target(target)	
+	else:
+		target.x -= 2.0
     if inside(ball):
         speed.y -= 0.2
         ball.move(speed)
